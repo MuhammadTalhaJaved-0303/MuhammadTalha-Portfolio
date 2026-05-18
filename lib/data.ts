@@ -4,6 +4,13 @@ export interface SocialLink {
   display: string;
 }
 
+export interface Product {
+  name: string;
+  tagline: string;
+  description: string;
+  url: string;
+}
+
 export interface Project {
   title: string;
   subtitle: string;
@@ -76,7 +83,51 @@ export const techStack: string[] = [
   "ChromaDB", "Pandas", "scikit-learn", "Next.js",
 ];
 
+export const products: Product[] = [
+  {
+    name: "aivico",
+    tagline: "AI that teaches. Teachers that care. Parents that see.",
+    description:
+      "AI-powered learning platform for Pakistani students — bilingual (English/Urdu) tutoring with adaptive practice, smart flashcards, and parent dashboards.",
+    url: "https://aivico.ai",
+  },
+  {
+    name: "skill2success",
+    tagline: "Pakistan's premier STEAM provider.",
+    description:
+      "STEAM education platform teaching AI, coding, and robotics to students across Pakistan.",
+    url: "https://www.skill2success.com",
+  },
+];
+
 export const projects: Project[] = [
+  {
+    title: "Aivico",
+    subtitle: "Bilingual AI Tutor — EdTech",
+    description:
+      "AI-powered learning platform for Pakistani students. Personal AI tutor available 24/7 in English and Urdu, with adaptive practice, spaced-repetition flashcards, and parent dashboards.",
+    highlights: [
+      "24/7 bilingual (English / Urdu) AI tutor with natural-language Q&A",
+      "Adaptive practice + smart flashcards driven by mastery signals",
+      "Knowledge mapping across subjects · gamified XP, streaks, badges",
+      "Parent dashboard for real-time progress and engagement",
+    ],
+    tech: ["Next.js", "Python", "LangChain", "OpenAI", "PostgreSQL", "Vercel"],
+    tag: "Live Product",
+    year: "2026",
+    featured: true,
+    href: "https://aivico.ai",
+  },
+  {
+    title: "Skill2Success",
+    subtitle: "STEAM · AI · Robotics — EdTech",
+    description:
+      "Pakistan's premier STEAM education platform — teaching AI, coding, and robotics to students through structured programs, interactive curriculum, and instructor-led tracks.",
+    tech: ["Next.js", "TypeScript", "React", "Tailwind", "Vercel"],
+    tag: "Live Product",
+    year: "2026",
+    href: "https://www.skill2success.com",
+  },
   {
     title: "AI LangChain Backend",
     subtitle: "Production-Ready Multi-User Conversational AI Platform",
@@ -88,9 +139,8 @@ export const projects: Project[] = [
       "90%+ test coverage with comprehensive monitoring",
     ],
     tech: ["FastAPI", "LangChain", "Gemini AI", "AWS", "PostgreSQL", "Redis", "Docker"],
-    tag: "Featured",
+    tag: "Enterprise",
     year: "2025",
-    featured: true,
   },
   {
     title: "Enterprise RAG System",

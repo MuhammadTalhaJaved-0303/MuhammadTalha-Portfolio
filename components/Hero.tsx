@@ -3,13 +3,17 @@
 import { motion, type Variants } from "motion/react";
 import { useEffect, useState } from "react";
 import { HeroVideo } from "./hero/HeroVideo";
-import { profile } from "@/lib/data";
+import { profile, products } from "@/lib/data";
+import { SOCIAL_ICONS, MailIcon } from "./icons/SocialIcons";
 
 /* ─────────────────────────────────────────────
-   Centered minimal hero
-   – Vercel / Contra freelancer style
-   – Small avatar, centered name + tagline,
-     short bio, paired CTAs, stats strip
+   Restructured hero (no avatar — name leads)
+   – Status pill kicker
+   – Bigger name + gradient surname
+   – Tagline · short bio
+   – Primary CTA + secondary outline
+   – Real brand-logo social row (interactive)
+   – Stats strip + Lahore live clock
 ───────────────────────────────────────────── */
 
 const reveal: Variants = {
@@ -17,7 +21,7 @@ const reveal: Variants = {
   show: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: 0.1 + i * 0.08, ease: [0.22, 0.61, 0.36, 1] },
+    transition: { duration: 0.7, delay: 0.08 + i * 0.08, ease: [0.22, 0.61, 0.36, 1] },
   }),
 };
 
@@ -25,27 +29,26 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-[92vh] w-full items-center overflow-hidden noise pt-28 pb-24 sm:pt-32 sm:pb-28"
+      className="relative isolate flex min-h-[92vh] w-full items-center overflow-hidden noise pt-32 pb-24 sm:pt-36 sm:pb-28"
     >
       <HeroVideo />
 
       <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center px-5 text-center">
-        {/* Avatar */}
-        <Avatar />
-
-        {/* Status badge */}
+        {/* Status pill */}
         <motion.div
           variants={reveal}
           initial="hidden"
           animate="show"
-          custom={1}
-          className="mt-7 inline-flex items-center gap-2 rounded-full border border-[var(--color-neon-mint)]/25 bg-[var(--color-neon-mint)]/[0.06] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--color-neon-mint)]"
+          custom={0}
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--color-neon-mint)]/25 bg-[var(--color-neon-mint)]/[0.06] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--color-neon-mint)]"
         >
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inset-0 animate-ping rounded-full bg-[var(--color-neon-mint)] opacity-60" />
             <span className="relative h-1.5 w-1.5 rounded-full bg-[var(--color-neon-mint)]" />
           </span>
-          Available for hire
+          Open for freelance projects
+          <span className="text-[var(--color-text-3)]">·</span>
+          <span className="text-[var(--color-text-2)]">remote worldwide</span>
         </motion.div>
 
         {/* Name */}
@@ -53,8 +56,8 @@ export function Hero() {
           variants={reveal}
           initial="hidden"
           animate="show"
-          custom={2}
-          className="mt-5 font-semibold leading-[1.05] tracking-tight text-4xl sm:text-5xl md:text-6xl"
+          custom={1}
+          className="mt-6 font-semibold leading-[1.02] tracking-tight text-5xl sm:text-6xl md:text-7xl"
         >
           <span className="text-[var(--color-text-1)]">Muhammad </span>
           <span className="text-gradient-neon">Talha Javed</span>
@@ -65,15 +68,18 @@ export function Hero() {
           variants={reveal}
           initial="hidden"
           animate="show"
-          custom={3}
-          className="mt-4 font-mono text-[11px] sm:text-xs uppercase tracking-[0.4em] text-[var(--color-text-2)]"
+          custom={2}
+          className="mt-5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.4em] text-[var(--color-text-2)]"
         >
-          AI Engineer
+          Freelance AI Engineer
           <span className="mx-3 text-[var(--color-neon-cyan)]">·</span>
-          Python Developer
+          Python &amp; ML
           <span className="mx-3 text-[var(--color-neon-cyan)]">·</span>
           UET Lahore
         </motion.p>
+
+        {/* Industries row */}
+        <IndustryChips />
 
         {/* Bio */}
         <motion.p
@@ -81,16 +87,25 @@ export function Hero() {
           initial="hidden"
           animate="show"
           custom={4}
-          className="mt-7 max-w-xl text-base sm:text-lg text-[var(--color-text-2)] leading-relaxed"
+          className="mt-7 max-w-2xl text-base sm:text-lg text-[var(--color-text-2)] leading-relaxed"
         >
-          I build production-grade AI systems with{" "}
-          <span className="text-[var(--color-text-1)]">FastAPI</span>,{" "}
-          <span className="text-[var(--color-text-1)]">LangChain</span>, and{" "}
-          <span className="text-[var(--color-text-1)]">AWS</span> — focused on
-          machine learning, data quality, and scalable infrastructure.
+          I help startups and teams ship production AI products as a
+          freelancer. Delivered across{" "}
+          <span className="text-[var(--color-text-1)]">EdTech</span>{" "}—
+          shipping{" "}
+          <ProductLink href={products[0].url} accent="cyan">
+            {products[0].name}
+          </ProductLink>{" "}
+          and{" "}
+          <ProductLink href={products[1].url} accent="violet">
+            {products[1].name}
+          </ProductLink>{" "}—{" "}
+          <span className="text-[var(--color-text-1)]">healthcare</span>, and{" "}
+          <span className="text-[var(--color-text-1)]">SaaS</span>. From ML
+          systems and AI agents to data pipelines and full-stack delivery.
         </motion.p>
 
-        {/* CTAs */}
+        {/* Primary CTAs */}
         <motion.div
           variants={reveal}
           initial="hidden"
@@ -100,9 +115,10 @@ export function Hero() {
         >
           <a
             href={`mailto:${profile.email}`}
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--color-neon-cyan)] px-6 py-3 text-sm font-medium text-black shadow-[var(--shadow-glow-cyan)] transition-transform hover:scale-[1.03]"
+            className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-[var(--color-neon-cyan)] px-6 py-3 text-sm font-medium text-black shadow-[var(--shadow-glow-cyan)] transition-transform hover:scale-[1.03]"
           >
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+            <MailIcon className="h-4 w-4" />
             Start a project
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </a>
@@ -114,26 +130,36 @@ export function Hero() {
           </a>
         </motion.div>
 
-        {/* Socials */}
+        {/* Brand-logo social row */}
         <motion.div
           variants={reveal}
           initial="hidden"
           animate="show"
           custom={6}
-          className="mt-6 flex items-center gap-2"
+          className="mt-7 flex items-center gap-3"
         >
-          {profile.socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-black/30 text-[10px] font-mono uppercase text-[var(--color-text-2)] hover:text-[var(--color-neon-cyan)] hover:border-[var(--color-neon-cyan)]/40 transition"
-              aria-label={s.label}
-            >
-              {s.label.slice(0, 2)}
-            </a>
-          ))}
+          <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-3)]">
+            connect
+          </span>
+          <span className="h-px w-8 bg-[var(--color-border-soft)]" />
+          {(["github", "linkedin", "whatsapp"] as const).map((k) => {
+            const s = SOCIAL_ICONS[k];
+            return (
+              <a
+                key={k}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.label}
+                className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-black/40 text-[var(--color-text-2)] backdrop-blur transition-all duration-200 ${s.hoverClass}`}
+              >
+                <s.Icon className="h-[18px] w-[18px] transition-transform duration-300 group-hover:scale-110" />
+                <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-text-1)] opacity-0 transition-opacity group-hover:opacity-100">
+                  {s.label}
+                </span>
+              </a>
+            );
+          })}
         </motion.div>
 
         {/* Stats strip */}
@@ -145,7 +171,7 @@ export function Hero() {
         href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
         className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[9px] font-mono uppercase tracking-[0.5em] text-[var(--color-text-3)] hover:text-[var(--color-text-1)] transition"
       >
         scroll
@@ -163,54 +189,77 @@ export function Hero() {
 
 /* ───────────────────────────────────────── */
 
-function Avatar() {
+const INDUSTRIES: Array<{ label: string; icon: string; tint: string }> = [
+  { label: "EdTech",     icon: "✶", tint: "var(--color-neon-cyan)" },
+  { label: "Healthcare", icon: "✚", tint: "var(--color-neon-mint)" },
+  { label: "SaaS",       icon: "◆", tint: "var(--color-neon-violet)" },
+];
+
+function IndustryChips() {
   return (
     <motion.div
       variants={reveal}
       initial="hidden"
       animate="show"
-      custom={0}
-      className="relative h-24 w-24 sm:h-28 sm:w-28"
+      custom={3}
+      className="mt-5 flex items-center justify-center gap-2"
     >
-      {/* Glow ring */}
-      <div
-        aria-hidden
-        className="absolute -inset-2 rounded-full opacity-70 blur-xl"
-        style={{
-          background:
-            "conic-gradient(from 200deg, var(--color-neon-cyan), var(--color-neon-violet), rgba(0,245,255,0.4), var(--color-neon-cyan))",
-        }}
-      />
-      {/* Gradient border */}
-      <div
-        className="relative h-full w-full rounded-full p-[2px]"
-        style={{
-          background:
-            "linear-gradient(135deg, var(--color-neon-cyan), var(--color-neon-violet))",
-        }}
-      >
-        <div className="relative h-full w-full overflow-hidden rounded-full bg-[var(--color-bg-elev)]">
-          {/* Initials backplate */}
-          <span className="absolute inset-0 flex items-center justify-center font-mono text-xl text-gradient-neon select-none">
-            {profile.initials}
-          </span>
-          {/* Photo */}
-          <img
-            src="/profile.jpg"
-            alt={profile.name}
-            className="absolute inset-0 h-full w-full object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.display = "none";
-            }}
-          />
-        </div>
-      </div>
-      {/* Live dot */}
-      <span
-        className="absolute right-1 top-1 h-3 w-3 rounded-full bg-[var(--color-neon-mint)] ring-2 ring-[var(--color-bg-base)] shadow-[0_0_12px_var(--color-neon-mint)]"
-        aria-label="online"
-      />
+      <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-3)]">
+        industries
+      </span>
+      <span className="h-px w-6 bg-[var(--color-border-soft)]" />
+      {INDUSTRIES.map((it) => (
+        <span
+          key={it.label}
+          className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border-soft)] bg-black/30 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-1)] backdrop-blur"
+        >
+          <span style={{ color: it.tint }}>{it.icon}</span>
+          {it.label}
+        </span>
+      ))}
     </motion.div>
+  );
+}
+
+interface ProductLinkProps {
+  href: string;
+  accent: "cyan" | "violet";
+  children: React.ReactNode;
+}
+
+function ProductLink({ href, accent, children }: ProductLinkProps) {
+  const color =
+    accent === "cyan"
+      ? "var(--color-neon-cyan)"
+      : "var(--color-neon-violet)";
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="group relative inline-flex items-baseline gap-0.5 font-medium text-[var(--color-text-1)] transition-colors"
+      style={{ ["--accent" as string]: color }}
+    >
+      <span className="relative">
+        {children}
+        <span
+          aria-hidden
+          className="absolute -bottom-0.5 left-0 right-0 h-px transition-opacity"
+          style={{ background: "var(--accent)", opacity: 0.45 }}
+        />
+        <span
+          aria-hidden
+          className="absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover:w-full"
+          style={{ background: "var(--accent)", boxShadow: "0 0 8px var(--accent)" }}
+        />
+      </span>
+      <span
+        className="text-[10px] opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-0.5"
+        style={{ color: "var(--accent)" }}
+      >
+        ↗
+      </span>
+    </a>
   );
 }
 
@@ -229,7 +278,7 @@ function StatsStrip() {
     return () => clearInterval(id);
   }, []);
 
-  const stats: Array<[string, React.ReactNode]> = [
+  const stats: Array<[string, string]> = [
     [profile.stats.projects, "Projects"],
     [profile.stats.githubCommits, "Commits"],
     [profile.stats.certifications, "Certifications"],
@@ -246,7 +295,7 @@ function StatsStrip() {
     >
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6 border-t border-[var(--color-border-soft)] pt-6">
         {stats.map(([value, label]) => (
-          <div key={String(label)} className="flex flex-col items-center gap-1">
+          <div key={label} className="flex flex-col items-center gap-1">
             <span className="text-2xl sm:text-3xl font-semibold text-gradient-neon">
               {value}
             </span>

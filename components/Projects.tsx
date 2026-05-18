@@ -89,6 +89,17 @@ function FeaturedCard({ project }: { project: Project }) {
               </span>
             ))}
           </div>
+          {project.href && (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+              className="group/cta mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--color-neon-cyan)]/40 bg-[var(--color-neon-cyan)]/[0.08] px-4 py-2 text-sm font-medium text-[var(--color-neon-cyan)] transition hover:bg-[var(--color-neon-cyan)]/[0.15] hover:shadow-[0_0_18px_rgba(0,245,255,0.25)]"
+            >
+              Visit live site
+              <span className="transition-transform group-hover/cta:translate-x-0.5">↗</span>
+            </a>
+          )}
         </div>
         <div className="relative min-h-[260px] lg:min-h-full border-t lg:border-t-0 lg:border-l border-[var(--color-border-soft)] overflow-hidden">
           <ProjectVisual seed={project.title} />
@@ -99,6 +110,15 @@ function FeaturedCard({ project }: { project: Project }) {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const Wrapper = project.href ? "a" : "div";
+  const wrapperProps = project.href
+    ? ({
+        href: project.href,
+        target: "_blank",
+        rel: "noreferrer",
+      } as const)
+    : {};
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -110,33 +130,41 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         "hover:border-[var(--color-border-bright)] hover:-translate-y-1 hover:shadow-[var(--shadow-glow-mixed)]"
       )}
     >
-      <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{
-          background:
-            "radial-gradient(60% 80% at 50% 0%, rgba(0,245,255,0.10), transparent 60%)",
-        }}
-      />
-      <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em]">
-        <span className="text-[var(--color-neon-cyan)]">{project.tag}</span>
-        <span className="text-[var(--color-text-2)]">{project.year}</span>
-      </div>
-      <h3 className="mt-5 text-xl font-semibold leading-snug">{project.title}</h3>
-      <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-[var(--color-text-2)]">
-        {project.subtitle}
-      </p>
-      <p className="mt-4 text-sm text-[var(--color-text-2)] leading-relaxed flex-1">
-        {project.description}
-      </p>
-      <div className="mt-5 flex flex-wrap gap-1.5">
-        {project.tech.slice(0, 5).map((t) => (
-          <span
-            key={t}
-            className="rounded-md bg-black/30 border border-[var(--color-border-soft)] px-2 py-1 font-mono text-[10px] text-[var(--color-text-2)]"
-          >
-            {t}
+      <Wrapper {...wrapperProps} className="contents">
+        <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity"
+          style={{
+            background:
+              "radial-gradient(60% 80% at 50% 0%, rgba(0,245,255,0.10), transparent 60%)",
+          }}
+        />
+        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em]">
+          <span className="text-[var(--color-neon-cyan)]">{project.tag}</span>
+          <span className="text-[var(--color-text-2)]">{project.year}</span>
+        </div>
+        <h3 className="mt-5 text-xl font-semibold leading-snug">{project.title}</h3>
+        <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-[var(--color-text-2)]">
+          {project.subtitle}
+        </p>
+        <p className="mt-4 text-sm text-[var(--color-text-2)] leading-relaxed flex-1">
+          {project.description}
+        </p>
+        <div className="mt-5 flex flex-wrap gap-1.5">
+          {project.tech.slice(0, 5).map((t) => (
+            <span
+              key={t}
+              className="rounded-md bg-black/30 border border-[var(--color-border-soft)] px-2 py-1 font-mono text-[10px] text-[var(--color-text-2)]"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+        {project.href && (
+          <span className="mt-5 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-neon-cyan)]">
+            Visit site
+            <span className="transition-transform group-hover:translate-x-0.5">↗</span>
           </span>
-        ))}
-      </div>
+        )}
+      </Wrapper>
     </motion.article>
   );
 }

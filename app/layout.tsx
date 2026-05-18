@@ -23,14 +23,26 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Talha Javed — AI Engineer",
+  title: "Muhammad Talha Javed — Freelance AI Engineer",
   description:
-    "Research-driven Computer Engineer building intelligent systems and AI applications. Focused on machine learning, data quality, and scalable solutions.",
-  metadataBase: new URL("https://mtj-portfolio.vercel.app"),
+    "Freelance AI engineer helping startups and teams ship production AI products across EdTech, healthcare, and SaaS. Shipped aivico and skill2success. Stack: FastAPI, LangChain, AWS.",
+  metadataBase: new URL("https://muhammad-talha-portfolio-pi.vercel.app"),
+  keywords: [
+    "Freelance AI engineer",
+    "AI engineer for hire",
+    "Python developer",
+    "LangChain",
+    "FastAPI",
+    "RAG",
+    "EdTech AI",
+    "Healthcare AI",
+    "SaaS AI",
+    "Muhammad Talha Javed",
+  ],
   openGraph: {
-    title: "Muhammad Talha Javed — AI Engineer",
+    title: "Muhammad Talha Javed — Freelance AI Engineer",
     description:
-      "Research-driven Computer Engineer building intelligent systems and AI applications.",
+      "Shipping production AI products across EdTech (aivico, skill2success), healthcare, and SaaS. Available for freelance projects.",
     type: "website",
   },
 };
