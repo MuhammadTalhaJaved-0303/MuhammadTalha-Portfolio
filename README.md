@@ -1,4 +1,4 @@
-This is a portfolio website built in next.js,typescript [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a portfolio website built in next.js,typescript and javascript [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
