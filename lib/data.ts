@@ -88,7 +88,7 @@ export const products: Product[] = [
     name: "aivico",
     tagline: "AI that teaches. Teachers that care. Parents that see.",
     description:
-      "AI-powered learning platform for Pakistani students — bilingual (English/Urdu) tutoring with adaptive practice, smart flashcards, and parent dashboards.",
+      "AI-powered learning platform for Pakistani students with bilingual (English/Urdu) tutoring, adaptive practice, smart flashcards, and parent dashboards.",
     url: "https://aivico.ai",
   },
   {
@@ -103,7 +103,7 @@ export const products: Product[] = [
 export const projects: Project[] = [
   {
     title: "Aivico",
-    subtitle: "Bilingual AI Tutor — EdTech",
+    subtitle: "Bilingual AI Tutor · EdTech",
     description:
       "AI-powered learning platform for Pakistani students. Personal AI tutor available 24/7 in English and Urdu, with adaptive practice, spaced-repetition flashcards, and parent dashboards.",
     highlights: [
@@ -120,9 +120,9 @@ export const projects: Project[] = [
   },
   {
     title: "Skill2Success",
-    subtitle: "STEAM · AI · Robotics — EdTech",
+    subtitle: "STEAM · AI · Robotics · EdTech",
     description:
-      "Pakistan's premier STEAM education platform — teaching AI, coding, and robotics to students through structured programs, interactive curriculum, and instructor-led tracks.",
+      "Pakistan's premier STEAM education platform, teaching AI, coding, and robotics to students through structured programs, interactive curriculum, and instructor-led tracks.",
     tech: ["Next.js", "TypeScript", "React", "Tailwind", "Vercel"],
     tag: "Live Product",
     year: "2026",
@@ -153,7 +153,7 @@ export const projects: Project[] = [
   },
   {
     title: "AI News Automation Agent",
-    subtitle: "Upwork Project — 5-Star Review",
+    subtitle: "Upwork Project · 5-Star Review",
     description:
       "AI-powered news automation using Python, Tkinter, and Crew AI. Delivered with excellent client feedback.",
     tech: ["Python", "Crew AI", "Tkinter", "OOP"],
@@ -172,6 +172,29 @@ export const projects: Project[] = [
 ];
 
 export const experience: ExperienceEntry[] = [
+  {
+    role: "AI Engineer",
+    company: "AIVICO",
+    location: "Lahore, Pakistan",
+    period: "Nov 2025 — Present",
+    bullets: [
+      "Building aivico.ai, an AI-powered learning platform for Pakistani students",
+      "Developed a 24/7 bilingual (English / Urdu) AI tutor with natural-language Q&A",
+      "Shipped adaptive practice and spaced-repetition flashcards driven by mastery signals",
+      "Delivered parent dashboards for real-time progress and engagement tracking",
+    ],
+  },
+  {
+    role: "AI Engineer",
+    company: "Skill2Success",
+    location: "Lahore, Pakistan",
+    period: "Nov 2025 — Present",
+    bullets: [
+      "Built and shipped skill2success.com, Pakistan's premier STEAM education platform",
+      "Developed program pages and interactive curriculum for AI, coding, and robotics tracks",
+      "Delivered a fast, SEO-friendly site with Next.js, TypeScript, and Tailwind on Vercel",
+    ],
+  },
   {
     role: "AI Engineer Intern",
     company: "SEE BIZ PVT LTD",

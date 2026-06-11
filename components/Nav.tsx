@@ -52,7 +52,7 @@ export function Nav() {
     >
       <div
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between gap-6 px-2.5 transition-all rounded-full",
+          "mx-auto flex max-w-6xl items-center justify-between gap-3 px-2.5 transition-all rounded-full",
           scrolled
             ? "border border-[var(--color-border-soft)] bg-[var(--color-bg-glass)] backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.45)]"
             : "border border-transparent bg-transparent"
@@ -78,16 +78,16 @@ function Brand() {
     <a
       href="#hero"
       aria-label="Home"
-      className="group relative inline-flex items-center gap-2 rounded-full px-3 py-2 font-mono text-sm tracking-tight text-[var(--color-text-1)] transition-colors hover:text-[var(--color-neon-cyan)]"
+      className="group relative inline-flex items-center gap-2 rounded-full px-3 py-2 font-mono text-sm tracking-tight text-[var(--color-text-1)] transition-colors hover:text-[var(--color-gold)]"
     >
       <span className="relative flex h-2 w-2">
-        <span className="absolute inset-0 animate-ping rounded-full bg-[var(--color-neon-cyan)] opacity-60" />
-        <span className="relative h-2 w-2 rounded-full bg-[var(--color-neon-cyan)] shadow-[0_0_10px_var(--color-neon-cyan)]" />
+        <span className="absolute inset-0 animate-ping rounded-full bg-[var(--color-gold)] opacity-60" />
+        <span className="relative h-2 w-2 rounded-full bg-[var(--color-gold)] shadow-[0_0_10px_var(--color-gold)]" />
       </span>
       <span>
-        <span className="text-[var(--color-neon-cyan)]">&lt;</span>
+        <span className="text-[var(--color-gold)]">&lt;</span>
         {profile.initials}
-        <span className="text-[var(--color-neon-violet)]">/&gt;</span>
+        <span className="text-[var(--color-sage)]">/&gt;</span>
       </span>
     </a>
   );
@@ -122,7 +122,7 @@ function NavLinks({ active }: NavLinksProps) {
                 className={cn(
                   "pointer-events-none absolute inset-x-3.5 -bottom-0.5 h-[2px] rounded-full transition-all duration-300",
                   isActive
-                    ? "opacity-100 bg-gradient-to-r from-[var(--color-neon-cyan)] to-[var(--color-neon-violet)] shadow-[0_0_8px_rgba(0,245,255,0.6)]"
+                    ? "opacity-100 bg-gradient-to-r from-[var(--color-gold-bright)] to-[var(--color-gold)] shadow-[0_0_8px_rgba(212,175,110,0.6)]"
                     : "opacity-0 bg-[var(--color-text-2)] group-hover:opacity-60"
                 )}
               />
@@ -138,10 +138,10 @@ function HireButton() {
   return (
     <a
       href="#contact"
-      className="group hidden sm:inline-flex items-center gap-2 rounded-full border border-[var(--color-border-soft)] bg-black/40 px-3.5 py-1.5 text-xs font-medium text-[var(--color-text-1)] transition hover:border-[var(--color-neon-cyan)]/40 hover:bg-[var(--color-neon-cyan)]/[0.08] hover:text-[var(--color-neon-cyan)]"
+      className="group hidden sm:inline-flex items-center gap-2 rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/50 px-3.5 py-1.5 text-xs font-medium text-[var(--color-text-1)] transition hover:border-[var(--color-gold)]/40 hover:bg-[var(--color-gold)]/[0.08] hover:text-[var(--color-gold)]"
     >
       Hire me
-      <span className="font-mono text-[10px] text-[var(--color-text-2)] transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--color-neon-cyan)]">
+      <span className="font-mono text-[10px] text-[var(--color-text-2)] transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--color-gold)]">
         →
       </span>
     </a>
@@ -178,8 +178,8 @@ function ProfileChip() {
         />
       </span>
 
-      {/* Name + status */}
-      <span className="hidden sm:flex flex-col items-start leading-tight">
+      {/* Name + status — lg-only so the bar never crowds on tablets */}
+      <span className="hidden lg:flex flex-col items-start leading-tight">
         <span className="text-[12px] font-semibold text-[var(--color-text-1)]">
           {profile.name.split(" ").slice(-2).join(" ")}
         </span>
@@ -193,7 +193,7 @@ function ProfileChip() {
       <svg
         aria-hidden
         viewBox="0 0 12 12"
-        className="hidden sm:block h-3 w-3 text-[var(--color-text-3)] transition group-hover:text-[var(--color-text-1)]"
+        className="hidden lg:block h-3 w-3 text-[var(--color-text-3)] transition group-hover:text-[var(--color-text-1)]"
       >
         <path
           d="M3 5l3 3 3-3"

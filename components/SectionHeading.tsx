@@ -6,11 +6,11 @@ interface SectionHeadingProps {
   num: string;
   title: string;
   kicker?: string;
-  accent?: "cyan" | "violet";
+  accent?: "gold" | "sage";
 }
 
-export function SectionHeading({ num, title, kicker, accent = "cyan" }: SectionHeadingProps) {
-  const dotColor = accent === "cyan" ? "var(--color-neon-cyan)" : "var(--color-neon-violet)";
+export function SectionHeading({ num, title, kicker, accent = "gold" }: SectionHeadingProps) {
+  const dotColor = accent === "gold" ? "var(--color-gold)" : "var(--color-sage)";
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -20,7 +20,7 @@ export function SectionHeading({ num, title, kicker, accent = "cyan" }: SectionH
       className="flex flex-col gap-3 mb-12 md:mb-16"
     >
       <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-text-2)]">
-        <span className="text-[var(--color-neon-cyan)]">{num}</span>
+        <span className="text-[var(--color-gold)]">{num}</span>
         <span className="h-px w-10 bg-[var(--color-border-soft)]" />
         {kicker && <span>{kicker}</span>}
       </div>

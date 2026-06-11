@@ -16,13 +16,13 @@ export function Projects() {
           className="absolute inset-x-0 top-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, var(--color-neon-cyan), transparent)",
+              "linear-gradient(90deg, transparent, var(--color-gold), transparent)",
             opacity: 0.4,
           }}
         />
       </div>
       <div className="mx-auto w-full max-w-6xl px-5">
-        <SectionHeading num="/02" title="Selected work" kicker="projects" accent="violet" />
+        <SectionHeading num="/02" title="Selected work" kicker="projects" accent="sage" />
 
         {featured && <FeaturedCard project={featured} />}
 
@@ -49,13 +49,13 @@ function FeaturedCard({ project }: { project: Project }) {
         className="absolute inset-0 -z-10 opacity-50 group-hover:opacity-80 transition-opacity"
         style={{
           background:
-            "radial-gradient(60% 80% at 0% 0%, rgba(0,245,255,0.18), transparent 55%), radial-gradient(60% 80% at 100% 100%, rgba(181,55,242,0.18), transparent 55%)",
+            "radial-gradient(60% 80% at 0% 0%, rgba(212,175,110,0.14), transparent 55%), radial-gradient(60% 80% at 100% 100%, rgba(143,181,164,0.14), transparent 55%)",
         }}
       />
       <div className="grid lg:grid-cols-[1fr_1.1fr]">
         <div className="p-7 sm:p-10 flex flex-col gap-6">
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em]">
-            <span className="rounded-full bg-[var(--color-neon-cyan)]/10 text-[var(--color-neon-cyan)] px-2 py-1 border border-[var(--color-neon-cyan)]/30">
+            <span className="rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold)] px-2 py-1 border border-[var(--color-gold)]/30">
               {project.tag}
             </span>
             <span className="text-[var(--color-text-2)]">{project.year}</span>
@@ -73,7 +73,7 @@ function FeaturedCard({ project }: { project: Project }) {
             <ul className="space-y-2.5">
               {project.highlights.map((h) => (
                 <li key={h} className="flex items-start gap-3 text-sm text-[var(--color-text-1)]">
-                  <span className="mt-1.5 h-1 w-3 shrink-0 rounded-full bg-gradient-to-r from-[var(--color-neon-cyan)] to-[var(--color-neon-violet)]" />
+                  <span className="mt-1.5 h-1 w-3 shrink-0 rounded-full bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-sage)]" />
                   {h}
                 </li>
               ))}
@@ -83,7 +83,7 @@ function FeaturedCard({ project }: { project: Project }) {
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="rounded-md bg-black/30 border border-[var(--color-border-soft)] px-2 py-1 font-mono text-[10px] text-[var(--color-text-2)]"
+                className="rounded-md bg-[var(--color-bg-base)]/40 border border-[var(--color-border-soft)] px-2 py-1 font-mono text-[10px] text-[var(--color-text-2)]"
               >
                 {t}
               </span>
@@ -94,7 +94,7 @@ function FeaturedCard({ project }: { project: Project }) {
               href={project.href}
               target="_blank"
               rel="noreferrer"
-              className="group/cta mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--color-neon-cyan)]/40 bg-[var(--color-neon-cyan)]/[0.08] px-4 py-2 text-sm font-medium text-[var(--color-neon-cyan)] transition hover:bg-[var(--color-neon-cyan)]/[0.15] hover:shadow-[0_0_18px_rgba(0,245,255,0.25)]"
+              className="group/cta mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/[0.08] px-4 py-2 text-sm font-medium text-[var(--color-gold)] transition hover:bg-[var(--color-gold)]/[0.15] hover:shadow-[0_0_18px_rgba(212,175,110,0.25)]"
             >
               Visit live site
               <span className="transition-transform group-hover/cta:translate-x-0.5">↗</span>
@@ -134,11 +134,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity"
           style={{
             background:
-              "radial-gradient(60% 80% at 50% 0%, rgba(0,245,255,0.10), transparent 60%)",
+              "radial-gradient(60% 80% at 50% 0%, rgba(212,175,110,0.10), transparent 60%)",
           }}
         />
         <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em]">
-          <span className="text-[var(--color-neon-cyan)]">{project.tag}</span>
+          <span className="text-[var(--color-gold)]">{project.tag}</span>
           <span className="text-[var(--color-text-2)]">{project.year}</span>
         </div>
         <h3 className="mt-5 text-xl font-semibold leading-snug">{project.title}</h3>
@@ -152,14 +152,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.tech.slice(0, 5).map((t) => (
             <span
               key={t}
-              className="rounded-md bg-black/30 border border-[var(--color-border-soft)] px-2 py-1 font-mono text-[10px] text-[var(--color-text-2)]"
+              className="rounded-md bg-[var(--color-bg-base)]/40 border border-[var(--color-border-soft)] px-2 py-1 font-mono text-[10px] text-[var(--color-text-2)]"
             >
               {t}
             </span>
           ))}
         </div>
         {project.href && (
-          <span className="mt-5 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-neon-cyan)]">
+          <span className="mt-5 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-gold)]">
             Visit site
             <span className="transition-transform group-hover:translate-x-0.5">↗</span>
           </span>
@@ -178,7 +178,7 @@ function ProjectVisual({ seed }: { seed: string }) {
       <div
         className="absolute inset-0"
         style={{
-          background: `conic-gradient(from ${offset}deg at 60% 40%, rgba(0,245,255,0.25), rgba(181,55,242,0.3), rgba(0,245,255,0.15), rgba(181,55,242,0.25))`,
+          background: `conic-gradient(from ${offset}deg at 60% 40%, rgba(212,175,110,0.22), rgba(143,181,164,0.25), rgba(212,175,110,0.12), rgba(143,181,164,0.2))`,
           filter: "blur(28px)",
           opacity: 0.7,
         }}
@@ -190,8 +190,8 @@ function ProjectVisual({ seed }: { seed: string }) {
       >
         <defs>
           <linearGradient id={`pv-${hash}`} x1="0" x2="1">
-            <stop offset="0%" stopColor="var(--color-neon-cyan)" />
-            <stop offset="100%" stopColor="var(--color-neon-violet)" />
+            <stop offset="0%" stopColor="var(--color-gold)" />
+            <stop offset="100%" stopColor="var(--color-sage)" />
           </linearGradient>
         </defs>
         {Array.from({ length: 7 }).map((_, i) => (
@@ -224,7 +224,7 @@ function ProjectVisual({ seed }: { seed: string }) {
         className="absolute inset-0 opacity-30"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px)",
+            "radial-gradient(rgba(237,233,223,0.16) 1px, transparent 1px)",
           backgroundSize: "18px 18px",
         }}
       />

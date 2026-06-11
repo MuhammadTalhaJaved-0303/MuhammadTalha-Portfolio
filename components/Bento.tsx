@@ -80,7 +80,7 @@ function Tile({ className, children, delay = 0 }: TileProps) {
         <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
             background:
-              "radial-gradient(60% 80% at 20% 0%, rgba(0,245,255,0.10), transparent 60%), radial-gradient(60% 80% at 90% 100%, rgba(181,55,242,0.10), transparent 60%)",
+              "radial-gradient(60% 80% at 20% 0%, rgba(212,175,110,0.10), transparent 60%), radial-gradient(60% 80% at 90% 100%, rgba(143,181,164,0.10), transparent 60%)",
           }}
         />
         {children}
@@ -92,7 +92,7 @@ function Tile({ className, children, delay = 0 }: TileProps) {
 function TileLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="absolute top-4 left-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-2)]">
-      <span className="h-1 w-1 rounded-full bg-[var(--color-neon-cyan)]" />
+      <span className="h-1 w-1 rounded-full bg-[var(--color-gold)]" />
       {children}
     </div>
   );
@@ -110,14 +110,14 @@ function AboutTile() {
               className="absolute inset-0"
               style={{
                 background:
-                  "conic-gradient(from 200deg, var(--color-neon-cyan), var(--color-neon-violet), var(--color-neon-cyan))",
+                  "conic-gradient(from 200deg, var(--color-gold), var(--color-sage), var(--color-gold))",
                 filter: "blur(8px)",
                 opacity: 0.7,
               }}
             />
-            <div className="absolute inset-[3px] overflow-hidden rounded-full bg-black">
+            <div className="absolute inset-[3px] overflow-hidden rounded-full bg-[var(--color-bg-base)]">
               {/* Stable initials backplate */}
-              <span className="absolute inset-0 flex items-center justify-center font-mono text-2xl text-gradient-neon select-none">
+              <span className="absolute inset-0 flex items-center justify-center font-mono text-2xl text-gradient-gold select-none">
                 {profile.initials}
               </span>
               {/* Photo on top, hides on error */}
@@ -152,7 +152,7 @@ function AboutTile() {
             ["Certs", profile.stats.certifications],
           ].map(([label, v]) => (
             <div key={label}>
-              <div className="text-2xl font-semibold text-gradient-neon">{v}</div>
+              <div className="text-2xl font-semibold text-gradient-gold">{v}</div>
               <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-text-2)] mt-1">{label}</div>
             </div>
           ))}
@@ -166,8 +166,8 @@ function AboutTile() {
         >
           <defs>
             <linearGradient id="orbit-grad" x1="0" x2="1">
-              <stop offset="0%" stopColor="var(--color-neon-cyan)" />
-              <stop offset="100%" stopColor="var(--color-neon-violet)" />
+              <stop offset="0%" stopColor="var(--color-gold)" />
+              <stop offset="100%" stopColor="var(--color-sage)" />
             </linearGradient>
           </defs>
           <circle cx="100" cy="100" r="80" fill="none" stroke="url(#orbit-grad)" strokeWidth="0.5" />
@@ -211,7 +211,7 @@ function ClockTile() {
           <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-2)]">
             {day} · {date}
           </div>
-          <div className="mt-2 text-sm text-[var(--color-neon-cyan)]">📍 {profile.location}</div>
+          <div className="mt-2 text-sm text-[var(--color-gold)]">📍 {profile.location}</div>
         </div>
       </div>
     </Tile>
@@ -220,14 +220,14 @@ function ClockTile() {
 
 function ClockSVG({ hours, minutes }: { hours: number; minutes: number }) {
   return (
-    <svg viewBox="0 0 60 60" className="h-14 w-14 text-[var(--color-neon-cyan)]" fill="none">
+    <svg viewBox="0 0 60 60" className="h-14 w-14 text-[var(--color-gold)]" fill="none">
       <circle cx="30" cy="30" r="26" stroke="currentColor" strokeOpacity="0.3" strokeWidth="1.2" />
       <circle cx="30" cy="30" r="26" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 6" opacity="0.5" />
       <g transform={`rotate(${hours * 30} 30 30)`}>
         <line x1="30" y1="30" x2="30" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </g>
       <g transform={`rotate(${minutes * 6} 30 30)`}>
-        <line x1="30" y1="30" x2="30" y2="10" stroke="var(--color-neon-violet)" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="30" y1="30" x2="30" y2="10" stroke="var(--color-sage)" strokeWidth="1.5" strokeLinecap="round" />
       </g>
       <circle cx="30" cy="30" r="2" fill="currentColor" />
     </svg>
@@ -241,7 +241,9 @@ function LearningTile() {
       <div className="relative flex h-full flex-col justify-between p-5">
         <TileLabel>learning</TileLabel>
         <BookAnim />
-        <div>
+        {/* mt-auto keeps this pinned to the bottom — the label and book
+            graphic are absolutely positioned at the top of the tile */}
+        <div className="mt-auto pt-20">
           <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-2)]">
             currently studying
           </p>
@@ -259,8 +261,8 @@ function BookAnim() {
     <svg viewBox="0 0 80 60" className="absolute right-4 top-3 h-16 w-20" fill="none">
       <defs>
         <linearGradient id="book-grad" x1="0" x2="1">
-          <stop offset="0%" stopColor="var(--color-neon-cyan)" />
-          <stop offset="100%" stopColor="var(--color-neon-violet)" />
+          <stop offset="0%" stopColor="var(--color-gold)" />
+          <stop offset="100%" stopColor="var(--color-sage)" />
         </linearGradient>
       </defs>
       <rect x="14" y="14" width="50" height="34" rx="2" stroke="url(#book-grad)" strokeWidth="1.2" opacity="0.7" />
@@ -289,7 +291,7 @@ function StackTile() {
           {[0, 1, 2].map((i) => (
             <span
               key={i}
-              className="h-1.5 w-1.5 rounded-full bg-[var(--color-neon-cyan)]"
+              className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]"
               style={{ animation: `pulse-glow 1.6s ease-in-out ${i * 0.25}s infinite` }}
             />
           ))}
@@ -298,7 +300,7 @@ function StackTile() {
           {techStack.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-[var(--color-border-soft)] bg-black/30 px-3 py-1.5 font-mono text-xs text-[var(--color-text-1)] hover:border-[var(--color-neon-cyan)]/40 hover:text-[var(--color-neon-cyan)] transition"
+              className="rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/40 px-3 py-1.5 font-mono text-xs text-[var(--color-text-1)] hover:border-[var(--color-gold)]/40 hover:text-[var(--color-gold)] transition"
             >
               {t}
             </span>
@@ -323,13 +325,13 @@ function GithubTile() {
         <GithubGraph />
         <div className="mt-12">
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-semibold text-gradient-neon">{profile.stats.githubCommits}</span>
+            <span className="text-3xl font-semibold text-gradient-gold">{profile.stats.githubCommits}</span>
             <span className="text-xs text-[var(--color-text-2)]">commits</span>
           </div>
           <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-2)]">
             {profile.stats.githubRepos} repos
           </div>
-          <div className="mt-3 inline-flex items-center gap-1 text-xs text-[var(--color-text-1)] group-hover:text-[var(--color-neon-cyan)] transition">
+          <div className="mt-3 inline-flex items-center gap-1 text-xs text-[var(--color-text-1)] group-hover:text-[var(--color-gold)] transition">
             View profile →
           </div>
         </div>
@@ -350,12 +352,12 @@ function GithubGraph() {
       {GH_PATTERN.map((level, i) => {
         const fill =
           level === 3
-            ? "var(--color-neon-cyan)"
+            ? "var(--color-gold)"
             : level === 2
-            ? "rgba(0,245,255,0.5)"
+            ? "rgba(212,175,110,0.5)"
             : level === 1
-            ? "rgba(0,245,255,0.22)"
-            : "rgba(255,255,255,0.08)";
+            ? "rgba(212,175,110,0.22)"
+            : "rgba(237,233,223,0.08)";
         return (
           <rect
             key={i}
@@ -407,7 +409,7 @@ function Waveform() {
       {Array.from({ length: bars }).map((_, i) => (
         <span
           key={i}
-          className="block w-[3px] rounded-full bg-gradient-to-t from-[var(--color-neon-cyan)] to-[var(--color-neon-violet)]"
+          className="block w-[3px] rounded-full bg-gradient-to-t from-[var(--color-gold)] to-[var(--color-sage)]"
           style={{
             height: `${20 + Math.sin(i * 0.8) * 20 + 20}%`,
             animation: `float-y ${0.6 + (i % 5) * 0.18}s ease-in-out ${i * 0.04}s infinite alternate`,
@@ -424,8 +426,8 @@ function QuoteTile() {
     <Tile className="sm:col-span-2 lg:col-span-4" delay={0.3}>
       <div className="relative flex h-full flex-col justify-between p-6 sm:p-8 min-h-[180px]">
         <TileLabel>fun fact</TileLabel>
-        <div className="absolute right-5 top-4 font-serif text-5xl leading-none text-[var(--color-neon-violet)]/40">&ldquo;</div>
-        <div className="mt-10">
+        <div className="absolute right-5 top-4 font-serif text-5xl leading-none text-[var(--color-sage)]/40">&ldquo;</div>
+        <div className="mt-12">
           <p className="text-lg sm:text-xl font-medium leading-snug text-[var(--color-text-1)]">
             {profile.funFact}
           </p>
@@ -438,7 +440,7 @@ function QuoteTile() {
 
 function Typecursor() {
   return (
-    <span className="ml-1 inline-block h-5 w-[2px] align-middle bg-[var(--color-neon-cyan)] animate-pulse" />
+    <span className="ml-1 inline-block h-5 w-[2px] align-middle bg-[var(--color-gold)] animate-pulse" />
   );
 }
 
@@ -452,7 +454,7 @@ function CertTile() {
         <RibbonAnim />
         <div className="mt-auto">
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-semibold text-gradient-neon">{profile.stats.certifications}</span>
+            <span className="text-3xl font-semibold text-gradient-gold">{profile.stats.certifications}</span>
             <span className="text-xs text-[var(--color-text-2)]">earned</span>
           </div>
           {featured && (
@@ -474,8 +476,8 @@ function RibbonAnim() {
     <svg viewBox="0 0 48 60" className="absolute right-3 top-3 h-16 w-12" fill="none">
       <defs>
         <linearGradient id="rib" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="var(--color-neon-cyan)" />
-          <stop offset="100%" stopColor="var(--color-neon-violet)" />
+          <stop offset="0%" stopColor="var(--color-gold)" />
+          <stop offset="100%" stopColor="var(--color-sage)" />
         </linearGradient>
       </defs>
       <circle cx="24" cy="20" r="13" stroke="url(#rib)" strokeWidth="1.5">
@@ -483,7 +485,7 @@ function RibbonAnim() {
       </circle>
       <circle cx="24" cy="20" r="7" stroke="url(#rib)" strokeWidth="1" opacity="0.6" />
       <path d="M18 30 L14 50 L24 44 L34 50 L30 30" stroke="url(#rib)" strokeWidth="1.2" strokeLinejoin="round" />
-      <text x="24" y="24" textAnchor="middle" fontSize="9" fill="var(--color-neon-cyan)" fontFamily="monospace">★</text>
+      <text x="24" y="24" textAnchor="middle" fontSize="9" fill="var(--color-gold)" fontFamily="monospace">★</text>
     </svg>
   );
 }

@@ -19,18 +19,18 @@ export function Contact() {
             className="absolute inset-0 -z-10 opacity-70"
             style={{
               background:
-                "radial-gradient(70% 90% at 100% 0%, rgba(0,245,255,0.18), transparent 60%), radial-gradient(70% 90% at 0% 100%, rgba(181,55,242,0.18), transparent 60%)",
+                "radial-gradient(70% 90% at 100% 0%, rgba(212,175,110,0.14), transparent 60%), radial-gradient(70% 90% at 0% 100%, rgba(143,181,164,0.14), transparent 60%)",
             }}
           />
           <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 items-end">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[var(--color-neon-cyan)]">
-                /05 — contact
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[var(--color-gold)]">
+                /05 · contact
               </p>
               <h2 className="mt-3 text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.05] tracking-tight">
                 Let&apos;s build <br />
                 something
-                <span className="text-gradient-neon">.</span>
+                <span className="text-gradient-gold">.</span>
               </h2>
               <p className="mt-5 max-w-md text-[var(--color-text-2)] leading-relaxed">
                 Currently seeking opportunities in AI and Data Science. Open to
@@ -39,7 +39,7 @@ export function Contact() {
 
               <a
                 href={`mailto:${profile.email}`}
-                className="group mt-8 inline-flex items-center gap-3 rounded-full bg-[var(--color-neon-cyan)] px-6 py-3 text-sm font-medium text-black shadow-[var(--shadow-glow-cyan)] hover:scale-[1.03] transition-transform"
+                className="group mt-8 inline-flex items-center gap-3 rounded-full bg-[var(--color-gold)] px-6 py-3 text-sm font-medium text-[#14110a] shadow-[var(--shadow-glow-gold)] hover:scale-[1.03] transition-transform"
               >
                 {profile.email}
                 <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -58,9 +58,9 @@ export function Contact() {
                   href={c.href}
                   target={c.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noreferrer"
-                  className="group flex items-center gap-4 rounded-2xl border border-[var(--color-border-soft)] bg-black/30 px-5 py-4 hover:border-[var(--color-neon-cyan)]/40 hover:shadow-[0_0_24px_rgba(0,245,255,0.15)] transition"
+                  className="group flex items-center gap-4 rounded-2xl border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/40 px-5 py-4 hover:border-[var(--color-gold)]/40 hover:shadow-[0_0_24px_rgba(212,175,110,0.15)] transition"
                 >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-elev)] font-mono text-xs text-[var(--color-neon-cyan)]">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-elev)] font-mono text-xs text-[var(--color-gold)]">
                     {c.icon}
                   </span>
                   <div className="flex-1">
@@ -69,7 +69,7 @@ export function Contact() {
                     </p>
                     <p className="text-sm text-[var(--color-text-1)] truncate">{c.value}</p>
                   </div>
-                  <span className="text-[var(--color-text-2)] group-hover:text-[var(--color-neon-cyan)] transition">→</span>
+                  <span className="text-[var(--color-text-2)] group-hover:text-[var(--color-gold)] transition">→</span>
                 </a>
               ))}
             </div>

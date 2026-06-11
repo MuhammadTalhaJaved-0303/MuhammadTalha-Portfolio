@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08080c",
+  themeColor: "#101319",
 };
 
 export default function RootLayout({
@@ -59,7 +59,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${jetbrains.variable} ${instrumentSerif.variable} h-full`}
     >
-      <body className="min-h-full antialiased selection:bg-[var(--color-neon-cyan)] selection:text-black">
+      <body className="min-h-full antialiased selection:bg-[var(--color-gold)] selection:text-[#14110a]">
         {children}
       </body>
     </html>

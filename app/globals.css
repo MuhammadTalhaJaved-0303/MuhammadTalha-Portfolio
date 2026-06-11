@@ -5,26 +5,26 @@
 @source "../lib/**/*.{ts,tsx}";
 
 @theme {
-  --color-bg-base: #08080c;
-  --color-bg-elev: #13131f;
-  --color-bg-glass: rgba(20, 20, 32, 0.55);
-  --color-border-soft: rgba(255, 255, 255, 0.08);
-  --color-border-bright: rgba(255, 255, 255, 0.18);
-  --color-text-1: #f0f0ff;
-  --color-text-2: #8b8b9e;
-  --color-text-3: #5a5a6e;
-  --color-neon-cyan: #00f5ff;
-  --color-neon-violet: #b537f2;
-  --color-neon-amber: #ffb547;
-  --color-neon-mint: #4dffb5;
+  --color-bg-base: #101319;
+  --color-bg-elev: #181d27;
+  --color-bg-glass: rgba(24, 29, 39, 0.6);
+  --color-border-soft: rgba(237, 233, 223, 0.08);
+  --color-border-bright: rgba(237, 233, 223, 0.2);
+  --color-text-1: #ede9df;
+  --color-text-2: #9a958a;
+  --color-text-3: #6b675e;
+  --color-gold: #d4af6e;
+  --color-gold-bright: #ecd9a8;
+  --color-gold-deep: #b98a4a;
+  --color-sage: #8fb5a4;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-jetbrains-mono);
   --font-serif: var(--font-instrument-serif);
 
-  --shadow-glow-cyan: 0 0 24px rgba(0, 245, 255, 0.35), 0 0 48px rgba(0, 245, 255, 0.12);
-  --shadow-glow-violet: 0 0 24px rgba(181, 55, 242, 0.35), 0 0 56px rgba(181, 55, 242, 0.18);
-  --shadow-glow-mixed: 0 0 24px rgba(0, 245, 255, 0.28), 0 0 56px rgba(181, 55, 242, 0.18);
+  --shadow-glow-gold: 0 0 20px rgba(212, 175, 110, 0.22), 0 0 44px rgba(212, 175, 110, 0.08);
+  --shadow-glow-sage: 0 0 20px rgba(143, 181, 164, 0.2), 0 0 44px rgba(143, 181, 164, 0.08);
+  --shadow-glow-mixed: 0 0 20px rgba(212, 175, 110, 0.16), 0 0 44px rgba(143, 181, 164, 0.1);
 }
 
 @layer base {
@@ -43,15 +43,20 @@
     overflow-x: hidden;
   }
 
+  /* Anchor targets clear the fixed nav instead of sliding under it */
+  section[id] {
+    scroll-margin-top: 6.5rem;
+  }
+
   ::selection {
-    background: var(--color-neon-cyan);
-    color: #000;
+    background: var(--color-gold);
+    color: #14110a;
   }
 }
 
 @layer utilities {
-  .text-gradient-neon {
-    background: linear-gradient(120deg, var(--color-neon-cyan) 0%, var(--color-neon-violet) 100%);
+  .text-gradient-gold {
+    background: linear-gradient(120deg, var(--color-gold-bright) 0%, var(--color-gold) 50%, var(--color-gold-deep) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -75,8 +80,8 @@
 
   .grid-bg {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(237, 233, 223, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(237, 233, 223, 0.04) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
@@ -98,18 +103,14 @@
     background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>");
   }
 
-  .ring-neon {
-    box-shadow: var(--shadow-glow-cyan);
-  }
-
   .aurora {
     position: absolute;
     inset: -20%;
     pointer-events: none;
     background:
-      radial-gradient(40rem 40rem at 15% 20%, rgba(0, 245, 255, 0.15), transparent 60%),
-      radial-gradient(45rem 45rem at 85% 75%, rgba(181, 55, 242, 0.18), transparent 60%),
-      radial-gradient(35rem 35rem at 50% 110%, rgba(0, 245, 255, 0.1), transparent 70%);
+      radial-gradient(40rem 40rem at 15% 20%, rgba(212, 175, 110, 0.1), transparent 60%),
+      radial-gradient(45rem 45rem at 85% 75%, rgba(143, 181, 164, 0.1), transparent 60%),
+      radial-gradient(35rem 35rem at 50% 110%, rgba(212, 175, 110, 0.07), transparent 70%);
     filter: blur(20px);
   }
 }
@@ -120,8 +121,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 245, 255, 0.5); }
-  50%      { box-shadow: 0 0 0 8px rgba(0, 245, 255, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 110, 0.5); }
+  50%      { box-shadow: 0 0 0 8px rgba(212, 175, 110, 0); }
 }
 
 @keyframes shimmer {
