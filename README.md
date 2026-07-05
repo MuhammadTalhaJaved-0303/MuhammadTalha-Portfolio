@@ -1,7 +1,5 @@
 This is a portfolio website built in next.js [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
-
 First, run the development server:
 
 ```bash
