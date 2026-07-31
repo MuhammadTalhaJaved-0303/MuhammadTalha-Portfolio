@@ -2,18 +2,20 @@
 
 import { motion, type Variants } from "motion/react";
 import { useEffect, useState } from "react";
+import { AsciiPortrait } from "./hero/AsciiPortrait";
 import { HeroBackdrop } from "./hero/HeroBackdrop";
 import { profile, products } from "@/lib/data";
 import { SOCIAL_ICONS, MailIcon } from "./icons/SocialIcons";
 
 /* ─────────────────────────────────────────────
-   Restructured hero (no avatar — name leads)
+   Split hero — ASCII portrait beside the copy
+   – Canvas portrait assembles from characters
    – Status pill kicker
    – Bigger name + champagne serif surname
    – Tagline · short bio
    – Primary CTA + secondary outline
    – Real brand-logo social row (interactive)
-   – Stats strip + Lahore live clock
+   – Full-width stats strip + Lahore live clock
 ───────────────────────────────────────────── */
 
 const reveal: Variants = {
@@ -33,136 +35,155 @@ export function Hero() {
     >
       <HeroBackdrop />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center px-5 text-center">
-        {/* Status pill */}
-        <motion.div
-          variants={reveal}
-          initial="hidden"
-          animate="show"
-          custom={0}
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--color-sage)]/25 bg-[var(--color-sage)]/[0.06] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--color-sage)]"
-        >
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inset-0 animate-ping rounded-full bg-[var(--color-sage)] opacity-60" />
-            <span className="relative h-1.5 w-1.5 rounded-full bg-[var(--color-sage)]" />
-          </span>
-          Open for projects
-          <span className="text-[var(--color-text-3)]">·</span>
-          <span className="text-[var(--color-text-2)]">remote worldwide</span>
-        </motion.div>
-
-        {/* Name */}
-        <motion.h1
-          variants={reveal}
-          initial="hidden"
-          animate="show"
-          custom={1}
-          className="mt-6 font-semibold leading-[1.02] tracking-tight text-5xl sm:text-6xl md:text-7xl"
-        >
-          <span className="text-[var(--color-text-1)]">Muhammad </span>
-          <span className="text-gradient-gold">Talha Javed</span>
-        </motion.h1>
-
-        {/* Tagline */}
-        <motion.p
-          variants={reveal}
-          initial="hidden"
-          animate="show"
-          custom={2}
-          className="mt-5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.4em] text-[var(--color-text-2)]"
-        >
-          AI Engineer
-          <span className="mx-3 text-[var(--color-gold)]">·</span>
-          Python &amp; ML
-          <span className="mx-3 text-[var(--color-gold)]">·</span>
-          UET Lahore
-        </motion.p>
-
-        {/* Industries row */}
-        <IndustryChips />
-
-        {/* Bio */}
-        <motion.p
-          variants={reveal}
-          initial="hidden"
-          animate="show"
-          custom={4}
-          className="mt-7 max-w-2xl text-base sm:text-lg text-[var(--color-text-2)] leading-relaxed"
-        >
-          I help startups and teams ship production AI products as a
-          freelancer. In{" "}
-          <span className="text-[var(--color-text-1)]">EdTech</span> I shipped{" "}
-          <ProductLink href={products[0].url} accent="gold">
-            {products[0].name}
-          </ProductLink>{" "}
-          and{" "}
-          <ProductLink href={products[1].url} accent="sage">
-            {products[1].name}
-          </ProductLink>
-          , with more delivered across{" "}
-          <span className="text-[var(--color-text-1)]">healthcare</span> and{" "}
-          <span className="text-[var(--color-text-1)]">SaaS</span>. From ML
-          systems and AI agents to data pipelines and full-stack delivery.
-        </motion.p>
-
-        {/* Primary CTAs */}
-        <motion.div
-          variants={reveal}
-          initial="hidden"
-          animate="show"
-          custom={5}
-          className="mt-9 flex flex-wrap items-center justify-center gap-3"
-        >
-          <a
-            href={`mailto:${profile.email}`}
-            className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-[var(--color-gold)] px-6 py-3 text-sm font-medium text-[#14110a] shadow-[var(--shadow-glow-gold)] transition-transform hover:scale-[1.03]"
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
+        <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)] lg:gap-16">
+          {/* ASCII portrait */}
+          <motion.div
+            variants={reveal}
+            initial="hidden"
+            animate="show"
+            custom={0}
+            className="flex justify-center lg:justify-start"
           >
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700" />
-            <MailIcon className="h-4 w-4" />
-            Start a project
-            <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/40 px-5 py-3 text-sm text-[var(--color-text-1)] backdrop-blur hover:border-[var(--color-border-bright)] hover:bg-white/[0.04] transition"
-          >
-            View selected work
-          </a>
-        </motion.div>
+            <AsciiPortrait
+              src="/profile.jpg"
+              alt="Portrait of Muhammad Talha Javed, rendered as drifting ASCII characters"
+            />
+          </motion.div>
 
-        {/* Brand-logo social row */}
-        <motion.div
-          variants={reveal}
-          initial="hidden"
-          animate="show"
-          custom={6}
-          className="mt-7 flex items-center gap-3"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-3)]">
-            connect
-          </span>
-          <span className="h-px w-8 bg-[var(--color-border-soft)]" />
-          {(["github", "linkedin", "whatsapp"] as const).map((k) => {
-            const s = SOCIAL_ICONS[k];
-            return (
+          {/* Copy column */}
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+            {/* Status pill */}
+            <motion.div
+              variants={reveal}
+              initial="hidden"
+              animate="show"
+              custom={1}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-sage)]/25 bg-[var(--color-sage)]/[0.06] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--color-sage)]"
+            >
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inset-0 animate-ping rounded-full bg-[var(--color-sage)] opacity-60" />
+                <span className="relative h-1.5 w-1.5 rounded-full bg-[var(--color-sage)]" />
+              </span>
+              Open for projects
+              <span className="text-[var(--color-text-3)]">·</span>
+              <span className="text-[var(--color-text-2)]">remote worldwide</span>
+            </motion.div>
+
+            {/* Name */}
+            <motion.h1
+              variants={reveal}
+              initial="hidden"
+              animate="show"
+              custom={2}
+              className="mt-6 font-semibold leading-[1.02] tracking-tight text-5xl sm:text-6xl"
+            >
+              <span className="text-[var(--color-text-1)]">Muhammad </span>
+              <span className="text-gradient-gold">Talha Javed</span>
+            </motion.h1>
+
+            {/* Tagline */}
+            <motion.p
+              variants={reveal}
+              initial="hidden"
+              animate="show"
+              custom={3}
+              className="mt-5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.4em] text-[var(--color-text-2)]"
+            >
+              AI Engineer
+              <span className="mx-3 text-[var(--color-gold)]">·</span>
+              Python &amp; ML
+              <span className="mx-3 text-[var(--color-gold)]">·</span>
+              UET Lahore
+            </motion.p>
+
+            {/* Industries row */}
+            <IndustryChips />
+
+            {/* Bio */}
+            <motion.p
+              variants={reveal}
+              initial="hidden"
+              animate="show"
+              custom={5}
+              className="mt-7 max-w-xl text-base sm:text-lg text-[var(--color-text-2)] leading-relaxed"
+            >
+              I help startups and teams ship production AI products as a
+              freelancer. In{" "}
+              <span className="text-[var(--color-text-1)]">EdTech</span> I shipped{" "}
+              <ProductLink href={products[0].url} accent="gold">
+                {products[0].name}
+              </ProductLink>{" "}
+              and{" "}
+              <ProductLink href={products[1].url} accent="sage">
+                {products[1].name}
+              </ProductLink>
+              , with more delivered across{" "}
+              <span className="text-[var(--color-text-1)]">healthcare</span> and{" "}
+              <span className="text-[var(--color-text-1)]">SaaS</span>. From ML
+              systems and AI agents to data pipelines and full-stack delivery.
+            </motion.p>
+
+            {/* Primary CTAs */}
+            <motion.div
+              variants={reveal}
+              initial="hidden"
+              animate="show"
+              custom={6}
+              className="mt-9 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+            >
               <a
-                key={k}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={s.label}
-                className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/50 text-[var(--color-text-2)] backdrop-blur transition-all duration-200 ${s.hoverClass}`}
+                href={`mailto:${profile.email}`}
+                className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-[var(--color-gold)] px-6 py-3 text-sm font-medium text-[#14110a] shadow-[var(--shadow-glow-gold)] transition-transform hover:scale-[1.03]"
               >
-                <s.Icon className="h-[18px] w-[18px] transition-transform duration-300 group-hover:scale-110" />
-                <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0b0d12]/85 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-text-1)] opacity-0 transition-opacity group-hover:opacity-100">
-                  {s.label}
-                </span>
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+                <MailIcon className="h-4 w-4" />
+                Start a project
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
-            );
-          })}
-        </motion.div>
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/40 px-5 py-3 text-sm text-[var(--color-text-1)] backdrop-blur hover:border-[var(--color-border-bright)] hover:bg-white/[0.04] transition"
+              >
+                View selected work
+              </a>
+            </motion.div>
 
-        {/* Stats strip */}
+            {/* Brand-logo social row */}
+            <motion.div
+              variants={reveal}
+              initial="hidden"
+              animate="show"
+              custom={7}
+              className="mt-7 flex items-center gap-3"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-3)]">
+                connect
+              </span>
+              <span className="h-px w-8 bg-[var(--color-border-soft)]" />
+              {(["github", "linkedin", "whatsapp"] as const).map((k) => {
+                const s = SOCIAL_ICONS[k];
+                return (
+                  <a
+                    key={k}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={s.label}
+                    className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/50 text-[var(--color-text-2)] backdrop-blur transition-all duration-200 ${s.hoverClass}`}
+                  >
+                    <s.Icon className="h-[18px] w-[18px] transition-transform duration-300 group-hover:scale-110" />
+                    <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0b0d12]/85 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-text-1)] opacity-0 transition-opacity group-hover:opacity-100">
+                      {s.label}
+                    </span>
+                  </a>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Stats strip — spans both columns */}
         <StatsStrip />
       </div>
 
@@ -201,8 +222,8 @@ function IndustryChips() {
       variants={reveal}
       initial="hidden"
       animate="show"
-      custom={3}
-      className="mt-5 flex flex-wrap items-center justify-center gap-2"
+      custom={4}
+      className="mt-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start"
     >
       <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-3)]">
         industries
@@ -290,8 +311,8 @@ function StatsStrip() {
       variants={reveal}
       initial="hidden"
       animate="show"
-      custom={7}
-      className="mt-14 w-full max-w-2xl"
+      custom={8}
+      className="mt-14 w-full"
     >
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6 border-t border-[var(--color-border-soft)] pt-6">
         {stats.map(([value, label]) => (
@@ -305,7 +326,7 @@ function StatsStrip() {
           </div>
         ))}
       </div>
-      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-3)]">
+      <p className="mt-6 text-center font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-3)]">
         Lahore, Pakistan
         <span className="mx-2 text-[var(--color-text-3)]">·</span>
         <span className="text-[var(--color-gold)]">{time ?? "--:--"}</span>
