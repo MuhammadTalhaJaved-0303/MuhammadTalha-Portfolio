@@ -1,10 +1,24 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import { skills, education, techStack } from "@/lib/data";
 import { SectionHeading } from "./SectionHeading";
 
-const MARQUEE = [...techStack, ...techStack];
+const TECH_LOGOS: Record<string, string> = {
+  Python: "python",
+  FastAPI: "fastapi",
+  LangChain: "langchain",
+  PyTorch: "pytorch",
+  AWS: "aws",
+  Docker: "docker",
+  PostgreSQL: "postgresql",
+  Redis: "redis",
+  ChromaDB: "chroma",
+  Pandas: "pandas",
+  "scikit-learn": "scikitlearn",
+  "Next.js": "nextdotjs",
+};
 
 export function Skills() {
   return (
@@ -42,16 +56,27 @@ export function Skills() {
         </div>
 
         {/* Tech marquee */}
-        <div className="relative mt-14 overflow-hidden mask-fade-x py-4">
-          <div className="flex w-max gap-8 animate-[marquee-x_28s_linear_infinite]">
-            {MARQUEE.map((t, i) => (
-              <span
-                key={`${t}-${i}`}
-                className="font-mono text-2xl sm:text-3xl text-[var(--color-text-2)] hover:text-[var(--color-gold)] transition"
+        <div className="tech-marquee relative mt-14 overflow-hidden mask-fade-x py-4" role="region" aria-label="Technology stack">
+          <div className="tech-marquee-track flex w-max animate-[marquee-x_28s_linear_infinite]">
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                aria-hidden={copy === 1 ? true : undefined}
+                className="tech-marquee-group flex shrink-0 items-center"
               >
-                {t}
-                <span className="mx-6 text-[var(--color-sage)]/40">◆</span>
-              </span>
+                {techStack.map((technology) => (
+                  <li key={technology} title={technology} className="flex h-16 w-28 shrink-0 items-center justify-center px-4">
+                    <Image
+                      src={`/tech/${TECH_LOGOS[technology]}.svg`}
+                      alt={copy === 0 ? technology : ""}
+                      width={80}
+                      height={48}
+                      loading="eager"
+                      className="h-12 w-20 object-contain brightness-0 invert opacity-70 transition-opacity hover:opacity-100"
+                    />
+                  </li>
+                ))}
+              </ul>
             ))}
           </div>
         </div>
@@ -89,6 +114,27 @@ export function Skills() {
         .mask-fade-x {
           -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
                   mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+        }
+        .tech-marquee:hover .tech-marquee-track {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .tech-marquee {
+            -webkit-mask-image: none;
+            mask-image: none;
+          }
+          .tech-marquee-track {
+            animation: none;
+            width: 100%;
+          }
+          .tech-marquee-group {
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+          }
+          .tech-marquee-group[aria-hidden="true"] {
+            display: none;
+          }
         }
       `}</style>
     </section>

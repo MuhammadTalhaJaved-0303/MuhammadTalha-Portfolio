@@ -69,7 +69,7 @@ export const profile = {
   ] satisfies SocialLink[],
   stats: {
     cgpa: "3.25",
-    projects: "5+",
+    projects: "8+",
     certifications: "2",
     yearsCoding: "3+",
     githubRepos: "20+",
@@ -101,6 +101,26 @@ export const products: Product[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    title: "Primal Code",
+    subtitle: "AI Code Editor · Developer Tools",
+    description:
+      "A VS Code-based desktop editor with Claude and Codex agents built in. Bring your own API keys, run coding agents side by side, and keep experiments isolated with Git worktrees.",
+    tech: ["TypeScript", "Electron", "VS Code", "Claude", "Codex"],
+    tag: "Live Product",
+    year: "2026",
+    href: "https://primal-code-site.vercel.app",
+  },
+  {
+    title: "Creston Biz",
+    subtitle: "Business Services · Corporate Website",
+    description:
+      "A responsive marketing website for a Lahore-based business services company. Presents facilities management, office operations, and events services with animated sections and a validated inquiry form.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Motion", "Zod"],
+    tag: "Live Website",
+    year: "2026",
+    href: "https://crestonbiz.com",
+  },
   {
     title: "Aivico",
     subtitle: "Bilingual AI Tutor · EdTech",
