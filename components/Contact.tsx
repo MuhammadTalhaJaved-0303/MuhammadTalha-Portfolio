@@ -48,10 +48,10 @@ export function Contact() {
 
             <div className="grid gap-3">
               {[
-                { label: "Email", value: profile.email, href: `mailto:${profile.email}`, icon: "✉" },
-                { label: "WhatsApp", value: "+92 370 1422152", href: profile.socials[2].href, icon: "💬" },
-                { label: "LinkedIn", value: "muhammad-talha-javed", href: profile.socials[1].href, icon: "in" },
-                { label: "GitHub", value: "MuhammadTalhaJaved-0303", href: profile.socials[0].href, icon: "</>" },
+                { label: "Email", value: profile.email, href: `mailto:${profile.email}`, icon: "email" },
+                { label: "WhatsApp", value: "+92 370 1422152", href: profile.socials[2].href, icon: "whatsapp" },
+                { label: "LinkedIn", value: "muhammad-talha-javed", href: profile.socials[1].href, icon: "linkedin" },
+                { label: "GitHub", value: "MuhammadTalhaJaved-0303", href: profile.socials[0].href, icon: "github" },
               ].map((c) => (
                 <a
                   key={c.label}
@@ -60,10 +60,18 @@ export function Contact() {
                   rel="noreferrer"
                   className="group flex items-center gap-4 rounded-2xl border border-[var(--color-border-soft)] bg-[var(--color-bg-base)]/40 px-5 py-4 hover:border-[var(--color-gold)]/40 hover:shadow-[0_0_24px_rgba(212,175,110,0.15)] transition"
                 >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-elev)] font-mono text-xs text-[var(--color-gold)]">
-                    {c.icon}
+                  <span aria-hidden="true" className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-border-soft)] bg-[var(--color-bg-elev)] text-[var(--color-gold)]">
+                    <span
+                      className="h-5 w-5 bg-current"
+                      style={{
+                        maskImage: `url(/contact/${c.icon}.svg)`,
+                        maskSize: "contain",
+                        maskRepeat: "no-repeat",
+                        maskPosition: "center",
+                      }}
+                    />
                   </span>
-                  <div className="flex-1">
+                  <div className="min-w-0 flex-1">
                     <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-text-2)]">
                       {c.label}
                     </p>
